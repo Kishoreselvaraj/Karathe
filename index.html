@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="heading"></h1>
+    <script>
+        const heading = document.getElementById("heading");
+
+        const url = "http://localhost:3000/api/admin/register";
+
+        const userData = {
+            name: "Harry",
+            email: "harry1@gmail.com",
+            username: "harry",
+            password: "harrypass"
+        }
+
+        const options = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer {jwtToken}"
+            },
+            body: JSON.stringify(userData)
+        }
+
+        async function callApi() {
+            const response = await fetch(url, options);
+
+            const data = await response.json();
+
+            
+            heading.textContent = data.message;
+        }
+
+        callApi()
+
+    </script>
+</body>
+</html>
